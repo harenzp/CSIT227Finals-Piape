@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +34,17 @@ public class App extends JFrame{
 
         persons = new ArrayList<>();
         // TODO add implementations for all milestones here
+        btnSave.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                int age = Integer.parseInt(tfAge.getText());
+
+                if (rbCustomer.isSelected()){
+                    persons.add(new Customer(tfName.getText(), age));
+                }
+            }
+        });
     }
 
     public static void main(String[] args) {
