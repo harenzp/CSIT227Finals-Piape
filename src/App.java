@@ -124,19 +124,19 @@ public class App extends JFrame{
                     } else if (rbClerk.isSelected()) {
 
                         Clerk c = (Clerk) persons.get(n - 1);
-
                         taPersons.append("Name: " + persons.get(n - 1).getName() + "\n");
                         taPersons.append("Age: " + persons.get(n - 1).getAge() + "\n");
                         taPersons.append("Months Worked: " + c.getMonths_worked() + "\n");
                         taPersons.append("Salary: " + c.getSalary() + "\n");
+
                     } else if (rbManager.isSelected()) {
 
                         Manager m = (Manager) persons.get(n - 1);
-
                         taPersons.append("Name: " + persons.get(n - 1).getName() + "\n");
                         taPersons.append("Age: " + persons.get(n - 1).getAge() + "\n");
                         taPersons.append("Months Worked: " + m.getMonths_worked() + "\n");
                         taPersons.append("Salary: " + m.getSalary() + "\n");
+
                     }
                 } catch (ClassCastException c) {
                     JOptionPane.showMessageDialog(null, "Select the correct type.");
