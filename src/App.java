@@ -102,6 +102,7 @@ public class App extends JFrame{
                 tfAge.setText("");
                 tfMonths.setText("");
                 tfSalary.setText("");
+                taPersons.setText("");
             }
         });
         btnSayHi.addActionListener(new ActionListener() {
@@ -205,6 +206,13 @@ public class App extends JFrame{
 
                     for (Person p : persons) {
                         writer.write(p + "\n");
+                        writer.write("Age: " + p.getAge() + "\n");
+
+                        if (p instanceof Employee) {
+                            writer.write("Months worked: " + ((Employee) p).getMonths_worked() + "\n");
+                            writer.write("Salary: " + ((Employee) p).getSalary() + "\n");
+                        }
+                        writer.write("\n");
                     }
 
                     writer.close();
