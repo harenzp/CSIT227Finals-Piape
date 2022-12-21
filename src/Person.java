@@ -10,7 +10,7 @@ public abstract class Person {
 
     @Override
     public String toString() {
-        System.out.println("Hello my name is " + name);
-        return super.toString();
+
+        return "Hello my name is " + name + ".";
     }
 }

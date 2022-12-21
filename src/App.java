@@ -35,6 +35,12 @@ public class App extends JFrame{
         persons = new ArrayList<>();
         // TODO add implementations for all milestones here
 
+        class Msg extends Exception {
+            public Msg (String message) {
+                super(message);
+            }
+        }
+
 
         btnSave.addActionListener(new ActionListener() {
             @Override
@@ -44,12 +50,14 @@ public class App extends JFrame{
                     int age = Integer.parseInt(tfAge.getText());
 
                     if (age < 0){
-                        throw (new NumberFormatException("Age is invalid"));
+                        throw (new Msg("Age is invalid"));
                     }
 
                     if (rbCustomer.isSelected()) {
                         persons.add(new Customer(tfName.getText(), age));
                     } else if (rbClerk.isSelected()) {
+
+
                         int months = Integer.parseInt(tfMonths.getText());
                         double salary = Double.parseDouble(tfSalary.getText());
 
@@ -60,10 +68,10 @@ public class App extends JFrame{
 
                         persons.add(new Clerk(tfName.getText(), age, months, salary));
                     }
+                } catch (Msg m) {
+                    JOptionPane.showMessageDialog(null, m.getMessage());
                 } catch (NumberFormatException nfe) {
-                    JOptionPane.showMessageDialog(null, nfe.getMessage());
-                } catch (Exception x) {
-                    JOptionPane.showMessageDialog(null, "Invalid Input");
+                    JOptionPane.showMessageDialog(null, "Enter a valid input");
                 }
 
                 tfName.setText("");
@@ -80,6 +88,16 @@ public class App extends JFrame{
                 tfAge.setText("");
                 tfMonths.setText("");
                 tfSalary.setText("");
+            }
+        });
+        btnSayHi.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (Person p : persons) {
+
+                    taPersons.append(p.toString());
+                    System.out.println();
+                }
             }
         });
     }

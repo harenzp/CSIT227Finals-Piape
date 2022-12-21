@@ -7,7 +7,6 @@ public class Clerk extends Employee{
 
     @Override
     public String toString() {
-        System.out.println("How may I help you?");
-        return super.toString();
+        return super.toString() + " How may I help you?";
     }
 }
