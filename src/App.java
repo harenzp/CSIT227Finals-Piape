@@ -43,6 +43,12 @@ public class App extends JFrame{
                 if (rbCustomer.isSelected()){
                     persons.add(new Customer(tfName.getText(), age));
                 }
+                else if (rbClerk.isSelected()){
+                    persons.add(new Clerk(tfName.getText(), age));
+                }
+                else if (rbManager.isSelected()){
+                    persons.add(new Clerk(tfName.getText(), age));
+                }
             }
         });
     }
