@@ -5,6 +5,7 @@ public class Clerk extends Employee{
         super(name, age, months_worked, salary);
     }
 
+
     @Override
     public String toString() {
         return super.toString() + " How may I help you?";

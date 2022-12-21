@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class App extends JFrame{
     private JPanel pnlMain;
     private JRadioButton rbCustomer;
@@ -50,14 +51,24 @@ public class App extends JFrame{
                     int age = Integer.parseInt(tfAge.getText());
 
                     if (age < 0){
-                        throw (new Msg("Age is invalid"));
+                        throw (new Msg("Age is invalid."));
                     }
+
+                    boolean numeric = true;
+
+                    try {
+                        Double num = Double.parseDouble(tfName.getText());
+                    } catch (NumberFormatException name) {
+                        numeric = false;
+                    }
+
+                    if(numeric)
+                        throw (new Msg("Enter a valid name."));
+
 
                     if (rbCustomer.isSelected()) {
                         persons.add(new Customer(tfName.getText(), age));
                     } else if (rbClerk.isSelected()) {
-
-
                         int months = Integer.parseInt(tfMonths.getText());
                         double salary = Double.parseDouble(tfSalary.getText());
 
@@ -66,12 +77,12 @@ public class App extends JFrame{
                         int months = Integer.parseInt(tfMonths.getText());
                         double salary = Double.parseDouble(tfSalary.getText());
 
-                        persons.add(new Clerk(tfName.getText(), age, months, salary));
+                        persons.add(new Manager(tfName.getText(), age, months, salary));
                     }
                 } catch (Msg m) {
                     JOptionPane.showMessageDialog(null, m.getMessage());
                 } catch (NumberFormatException nfe) {
-                    JOptionPane.showMessageDialog(null, "Enter a valid input");
+                    JOptionPane.showMessageDialog(null, "Enter a valid input.");
                 }
 
                 tfName.setText("");
@@ -97,6 +108,42 @@ public class App extends JFrame{
 
                     taPersons.append(p.toString()+"\n");
 
+                }
+            }
+        });
+        btnLoad.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                try {
+                    int n = Integer.parseInt(tfLoad.getText());
+
+                    if (rbCustomer.isSelected()) {
+                        taPersons.append("Name: " + persons.get(n - 1).getName() + "\n");
+                        taPersons.append("Age: " + persons.get(n - 1).getAge() + "\n");
+                    } else if (rbClerk.isSelected()) {
+
+                        Clerk c = (Clerk) persons.get(n - 1);
+
+                        taPersons.append("Name: " + persons.get(n - 1).getName() + "\n");
+                        taPersons.append("Age: " + persons.get(n - 1).getAge() + "\n");
+                        taPersons.append("Months Worked: " + c.getMonths_worked() + "\n");
+                        taPersons.append("Salary: " + c.getSalary() + "\n");
+                    } else if (rbManager.isSelected()) {
+
+                        Manager m = (Manager) persons.get(n - 1);
+
+                        taPersons.append("Name: " + persons.get(n - 1).getName() + "\n");
+                        taPersons.append("Age: " + persons.get(n - 1).getAge() + "\n");
+                        taPersons.append("Months Worked: " + m.getMonths_worked() + "\n");
+                        taPersons.append("Salary: " + m.getSalary() + "\n");
+                    }
+                } catch (ClassCastException c) {
+                    JOptionPane.showMessageDialog(null, "Select the correct type.");
+                } catch (NumberFormatException n) {
+                    JOptionPane.showMessageDialog(null, "Input a valid number.");
+                } catch (IndexOutOfBoundsException i) {
+                    JOptionPane.showMessageDialog(null, "Person does not exist.");
                 }
             }
         });

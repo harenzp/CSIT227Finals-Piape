@@ -1,7 +1,6 @@
 public class Employee extends Person{
-
-    int months_worked;
-    double salary;
+    private int months_worked;
+    private double salary;
 
     public Employee(String name, int age, int months_worked, double salary) {
         super(name, age);
@@ -11,6 +10,13 @@ public class Employee extends Person{
 
     public class thirteenthMonth {
         double thM = salary/(12/months_worked);
-
     }
+    public int getMonths_worked() {
+        return months_worked;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
 }
