@@ -170,6 +170,31 @@ public class App extends JFrame{
                 tfSalary.setEnabled(true);
             }
         });
+        btnReward.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                try {
+                    int n = Integer.parseInt(tfLoad.getText());
+
+                    Employee em = (Employee) persons.get(n - 1);
+
+                    if (em.getMonths_worked() < 12) {
+                        throw (new Msg("Employee is not eligible."));
+                    }
+
+                    JOptionPane.showMessageDialog(null, em.getName() + " has " + em.thirteenthMonth() + " reward.");
+                } catch (NumberFormatException xx) {
+                    JOptionPane.showMessageDialog(null, "Input a number.");
+                } catch (Msg mrew) {
+                    JOptionPane.showMessageDialog(null, mrew.getMessage());
+                } catch (ClassCastException cc) {
+                    JOptionPane.showMessageDialog(null, "Person is not an employee.");
+                } catch (Exception xxx) {
+                    JOptionPane.showMessageDialog(null, "Invalid input.");
+                }
+            }
+        });
     }
 
     public static void main(String[] args) {
