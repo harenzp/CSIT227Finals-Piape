@@ -38,18 +38,30 @@ public class App extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                int age = Integer.parseInt(tfAge.getText());
-                int months = Integer.parseInt(tfMonths.getText());
-                double salary = Double.parseDouble(tfSalary.getText());
+                try {
+                    int age = Integer.parseInt(tfAge.getText());
 
-                if (rbCustomer.isSelected()){
-                    persons.add(new Customer(tfName.getText(), age));
-                }
-                else if (rbClerk.isSelected()){
-                    persons.add(new Clerk(tfName.getText(), age, months, salary));
-                }
-                else if (rbManager.isSelected()){
-                    persons.add(new Clerk(tfName.getText(), age, months, salary));
+                    if (age < 0){
+                        throw (new NumberFormatException("Age is invalid"));
+                    }
+
+                    if (rbCustomer.isSelected()) {
+                        persons.add(new Customer(tfName.getText(), age));
+                    } else if (rbClerk.isSelected()) {
+                        int months = Integer.parseInt(tfMonths.getText());
+                        double salary = Double.parseDouble(tfSalary.getText());
+
+                        persons.add(new Clerk(tfName.getText(), age, months, salary));
+                    } else if (rbManager.isSelected()) {
+                        int months = Integer.parseInt(tfMonths.getText());
+                        double salary = Double.parseDouble(tfSalary.getText());
+
+                        persons.add(new Clerk(tfName.getText(), age, months, salary));
+                    }
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, nfe.getMessage());
+                } catch (Exception x) {
+                    JOptionPane.showMessageDialog(null, "Invalid Input");
                 }
 
                 tfName.setText("");
@@ -57,6 +69,7 @@ public class App extends JFrame{
                 tfMonths.setText("");
                 tfSalary.setText("");
             }
+
         });
     }
 
