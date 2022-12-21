@@ -34,6 +34,8 @@ public class App extends JFrame{
 
         persons = new ArrayList<>();
         // TODO add implementations for all milestones here
+
+
         btnSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
