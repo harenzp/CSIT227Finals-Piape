@@ -39,16 +39,23 @@ public class App extends JFrame{
             public void actionPerformed(ActionEvent e) {
 
                 int age = Integer.parseInt(tfAge.getText());
+                int months = Integer.parseInt(tfMonths.getText());
+                double salary = Double.parseDouble(tfSalary.getText());
 
                 if (rbCustomer.isSelected()){
                     persons.add(new Customer(tfName.getText(), age));
                 }
                 else if (rbClerk.isSelected()){
-                    persons.add(new Clerk(tfName.getText(), age));
+                    persons.add(new Clerk(tfName.getText(), age, months, salary));
                 }
                 else if (rbManager.isSelected()){
-                    persons.add(new Clerk(tfName.getText(), age));
+                    persons.add(new Clerk(tfName.getText(), age, months, salary));
                 }
+
+                tfName.setText("");
+                tfAge.setText("");
+                tfMonths.setText("");
+                tfSalary.setText("");
             }
         });
     }
