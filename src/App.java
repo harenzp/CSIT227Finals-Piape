@@ -3,6 +3,9 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -186,12 +189,29 @@ public class App extends JFrame{
                     JOptionPane.showMessageDialog(null, em.getName() + " has " + em.thirteenthMonth() + " reward.");
                 } catch (NumberFormatException xx) {
                     JOptionPane.showMessageDialog(null, "Input a number.");
-                } catch (Msg mrew) {
-                    JOptionPane.showMessageDialog(null, mrew.getMessage());
+                } catch (Msg mm) {
+                    JOptionPane.showMessageDialog(null, mm.getMessage());
                 } catch (ClassCastException cc) {
                     JOptionPane.showMessageDialog(null, "Person is not an employee.");
                 } catch (Exception xxx) {
                     JOptionPane.showMessageDialog(null, "Invalid input.");
+                }
+            }
+        });
+        btnSavePerson.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                try {
+                    BufferedWriter writer = new BufferedWriter(new FileWriter("persons.txt"));
+
+                    for (Person p : persons) {
+                        writer.write(p + "\n");
+                    }
+
+                    writer.close();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
                 }
             }
         });
