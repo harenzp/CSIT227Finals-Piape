@@ -3,9 +3,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -210,6 +208,24 @@ public class App extends JFrame{
                     }
 
                     writer.close();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+        btnLoadPerson.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    BufferedReader reader = new BufferedReader(new FileReader("persons.txt"));
+
+                    String line;
+
+                    while ((line = reader.readLine()) != null) {
+                        taPersons.append(line + "\n");
+                    }
+
+                    reader.close();
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
