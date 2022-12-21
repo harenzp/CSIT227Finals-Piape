@@ -1,3 +1,16 @@
-public class Person {
-    // TODO implement Person and its subclasses in other Java files
+public abstract class Person {
+    //
+    String name;
+    int age;
+
+    public Person (String name, int age){
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        System.out.println("Hello my name is " + name);
+        return super.toString();
+    }
 }
