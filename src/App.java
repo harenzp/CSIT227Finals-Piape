@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -145,6 +147,27 @@ public class App extends JFrame{
                 } catch (IndexOutOfBoundsException i) {
                     JOptionPane.showMessageDialog(null, "Person does not exist.");
                 }
+            }
+        });
+        rbCustomer.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                tfMonths.setEnabled(false);
+                tfSalary.setEnabled(false);
+            }
+        });
+        rbClerk.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                tfMonths.setEnabled(true);
+                tfSalary.setEnabled(true);
+            }
+        });
+        rbManager.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                tfMonths.setEnabled(true);
+                tfSalary.setEnabled(true);
             }
         });
     }
