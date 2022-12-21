@@ -95,8 +95,8 @@ public class App extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 for (Person p : persons) {
 
-                    taPersons.append(p.toString());
-                    System.out.println();
+                    taPersons.append(p.toString()+"\n");
+
                 }
             }
         });
